@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $image_path = 'assets/images/games/' . $new_filename;
         } else {
             $message = "Error: Failed to move uploaded file.";
-        }
+       }
     }
 
     if (empty($message)) {
