@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault - Best Rummy & Slots Apps of 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #000;
+            border-bottom: 1px solid #222;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: #aaa;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            background-color: #111;
+            border: 1px solid #333;
+            border-right: none;
+            border-radius: 8px 0 0 8px;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .search-input::placeholder {
+            color: #666;
+        }
+
+        .search-button {
+            padding: 1rem 2rem;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .apps-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .apps-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .apps-title h2 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .apps-count {
+            color: #666;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .filter-tab {
+            padding: 0.5rem 1.25rem;
+            background-color: transparent;
+            color: #aaa;
+            border: 1px solid #333;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.875rem;
+        }
+
+        .filter-tab:hover {
+            border-color: #555;
+            color: #fff;
+        }
+
+        .filter-tab.active {
+            background-color: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .app-card {
+            background: linear-gradient(135deg, #1a5f3f, #0d3d28);
+            border-radius: 12px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-card.slots {
+            background: linear-gradient(135deg, #8b4513, #654321);
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .app-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .app-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* Detail Page Styles */
+        .detail-page {
+            display: none;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .detail-page.active {
+            display: block;
+        }
+
+        .detail-hero {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            align-items: flex-start;
+        }
+
+        .app-icon-large {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #8b4513, #654321);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .app-details {
+            flex: 1;
+        }
+
+        .app-category-detail {
+            color: #aaa;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .app-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .app-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #aaa;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .star {
+            color: #ffd700;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0e0e0;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-card {
+            background-color: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .info-label {
+            color: #666;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .about-section {
+            background-color: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .about-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-section p {
+            color: #aaa;
+            line-height: 1.8;
+        }
+
+        .related-apps h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .related-card {
+            background-color: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .related-card-image {
+            height: 200px;
+            background: linear-gradient(135deg, #1a5f3f, #0d3d28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .related-card-image.purple {
+            background: linear-gradient(135deg, #6b46c1, #553c9a);
+        }
+
+        .related-card-image.green {
+            background: linear-gradient(135deg, #1a5f3f, #0d3d28);
+        }
+
+        .related-card-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.25rem 0.75rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .related-card-content {
+            padding: 1.5rem;
+        }
+
+        .related-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .related-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #aaa;
+            font-size: 0.875rem;
+        }
+
+        .bonus {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .back-button {
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid #333;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            border-color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-hero {
+                flex-direction: column;
+            }
+
+            .filter-tabs {
+                flex-wrap: wrap;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">G</div>
+                <span>GameVault</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showHome()">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <main id="homePage">
+        <section class="hero">
+            <h1>Best rummy & slots<br>apps of 2026.</h1>
+            <p>Curated, ranked and updated. Download trusted real-money game APKs with verified bonus offers.</p>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search games..." id="searchInput">
+                <button class="search-button" onclick="searchGames()">Search</button>
+            </div>
+        </section>
+
+        <section class="apps-section">
+            <div class="apps-header">
+                <div class="apps-title">
+                    <h2>Latest apps</h2>
+                    <div class="apps-count">12 apps available</div>
+                </div>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterApps('all')">All</button>
+                    <button class="filter-tab" onclick="filterApps('rummy')">Rummy</button>
+                    <button class="filter-tab" onclick="filterApps('slots')">Slots</button>
+                    <button class="filter-tab" onclick="filterApps('teen-patti')">Teen Patti</button>
+                    <button class="filter-tab" onclick="filterApps('ludo')">Ludo</button>
+                </div>
+            </div>
+
+            <div class="apps-grid" id="appsGrid">
+                <!-- Apps will be dynamically inserted here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Detail Page -->
+    <div id="detailPage" class="detail-page">
+        <button class="back-button" onclick="showHome()">← Back to all apps</button>
+        
+        <div class="detail-hero">
+            <div class="app-icon-large" id="detailIcon">777</div>
+            <div class="app-details">
+                <div class="app-category-detail" id="detailCategory">SLOTS</div>
+                <h1 class="app-title" id="detailTitle">Ever 777</h1>
+                <div class="app-meta">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span id="detailRating">4.8</span>
+                    </div>
+                    <span id="detailDownloads">150K downloads</span>
+                    <span id="detailBonus" class="bonus">Bonus ₹70</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary">Download APK</button>
+                    <button class="btn btn-secondary">Telegram</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-label">Updated</div>
+                <div class="info-value" id="detailUpdated">07/05/2026</div>
+            </div>
+            <div class="info-card">
+                <div class="info-label">Size</div>
+                <div class="info-value" id="detailSize">55 MB</div>
+            </div>
+            <div class="info-card">
+                <div class="info-label">Version</div>
+                <div class="info-value" id="detailVersion">Latest</div>
+            </div>
+            <div class="info-card">
+                <div class="info-label">Downloads</div>
+                <div class="info-value" id="detailDownloadsCount">150K</div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h3 id="detailAboutTitle">About Ever 777</h3>
+            <p id="detailDescription">Spin the reels on Ever 777 — slots, teen patti and more, all in one app.</p>
+        </div>
+
+        <div class="related-apps">
+            <h3>Related apps</h3>
+            <div class="related-grid">
+                <div class="related-card" onclick="showAppDetail('Hindi 777', 'slots', 4.7, '₹79', 'hindi')">
+                    <div class="related-card-image green">
+                        <div class="related-card-category">SLOTS</div>
+                        <div style="font-size: 2.5rem;">हिंदी</div>
+                    </div>
+                    <div class="related-card-content">
+                        <div class="related-card-title">Hindi 777</div>
+                        <div class="related-card-meta">
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span>4.7</span>
+                            </div>
+                            <span class="bonus">₹79</span>
+                        </div>
+                        <button class="download-btn">Download</button>
+                    </div>
+                </div>
+
+                <div class="related-card" onclick="showAppDetail('Diwa Slot', 'slots', 4.5, '₹55', 'DIWA')">
+                    <div class="related-card-image purple">
+                        <div class="related-card-category">SLOTS</div>
+                        <div>DIWA</div>
+                    </div>
+                    <div class="related-card-content">
+                        <div class="related-card-title">Diwa Slot</div>
+                        <div class="related-card-meta">
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span>4.5</span>
+                            </div>
+                            <span class="bonus">₹55</span>
+                        </div>
+                        <button class="download-btn">Download</button>
+                    </div>
+                </div>
+
+                <div class="related-card" onclick="showAppDetail('Jaiho 91', 'slots', 4.8, '₹60', 'JAI')">
+                    <div class="related-card-image green">
+                        <div class="related-card-category">SLOTS</div>
+                        <div>JAI</div>
+                    </div>
+                    <div class="related-card-content">
+                        <div class="related-card-title">Jaiho 91</div>
+                        <div class="related-card-meta">
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span>4.8</span>
+                            </div>
+                            <span class="bonus">₹60</span>
+                        </div>
+                        <button class="download-btn">Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for apps
+        const appsData = [
+            { name: 'Rummy Gold', category: 'rummy', rating: 4.7, downloads: '200K', bonus: '₹51', icon: 'RG' },
+            { name: 'Rummy Star', category: 'rummy', rating: 4.6, downloads: '180K', bonus: '₹41', icon: 'RS' },
+            { name: 'Ever 777', category: 'slots', rating: 4.8, downloads: '150K', bonus: '₹70', icon: '777' },
+            { name: 'Mega Slots', category: 'slots', rating: 4.5, downloads: '120K', bonus: '₹55', icon: 'MS' },
+            { name: 'Rummy Master', category: 'rummy', rating: 4.9, downloads: '250K', bonus: '₹100', icon: 'RM' },
+            { name: 'Lucky Slots', category: 'slots', rating: 4.4, downloads: '100K', bonus: '₹45', icon: 'LS' },
+            { name: 'Teen Patti Gold', category: 'teen-patti', rating: 4.7, downloads: '220K', bonus: '₹75', icon: 'TPG' },
+            { name: 'Ludo King Plus', category: 'ludo', rating: 4.8, downloads: '300K', bonus: '₹30', icon: 'LK' },
+            { name: 'Rummy Circle', category: 'rummy', rating: 4.6, downloads: '190K', bonus: '₹50', icon: 'RC' },
+            { name: 'Teen Patti Master', category: 'teen-patti', rating: 4.5, downloads: '160K', bonus: '₹60', icon: 'TPM' },
+            { name: 'Jackpot Slots', category: 'slots', rating: 4.7, downloads: '140K', bonus: '₹80', icon: 'JS' },
+            { name: 'Ludo Supreme', category: 'ludo', rating: 4.6, downloads: '170K', bonus: '₹35', icon: 'LS' }
+        ];
+
+        // Initialize apps grid
+        function initializeApps() {
+            const grid = document.getElementById('appsGrid');
+            grid.innerHTML = '';
+            
+            appsData.forEach(app => {
+                const card = document.createElement('div');
+                card.className = `app-card ${app.category === 'slots' ? 'slots' : ''}`;
+                card.onclick = () => showAppDetail(app.name, app.category, app.rating, app.bonus, app.icon);
+                
+                card.innerHTML = `
+                    <div class="app-category">${app.category.toUpperCase().replace('-', ' ')}</div>
+                    <div class="app-name">${app.icon}</div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter apps
+        function filterApps(category) {
+            const tabs = document.querySelectorAll('.filter-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const grid = document.getElementById('appsGrid');
+            grid.innerHTML = '';
+            
+            const filtered = category === 'all' ? appsData : appsData.filter(app => app.category === category);
+            
+            filtered.forEach(app => {
+                const card = document.createElement('div');
+                card.className = `app-card ${app.category === 'slots' ? 'slots' : ''}`;
+                card.onclick = () => showAppDetail(app.name, app.category, app.rating, app.bonus, app.icon);
+                
+                card.innerHTML = `
+                    <div class="app-category">${app.category.toUpperCase().replace('-', ' ')}</div>
+                    <div class="app-name">${app.icon}</div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Show app detail
+        function showAppDetail(name, category, rating, bonus, icon) {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('detailPage').classList.add('active');
+            
+            document.getElementById('detailIcon').textContent = icon;
+            document.getElementById('detailCategory').textContent = category.toUpperCase().replace('-', ' ');
+            document.getElementById('detailTitle').textContent = name;
+            document.getElementById('detailRating').textContent = rating;
+            document.getElementById('detailBonus').textContent = `Bonus ${bonus}`;
+            document.getElementById('detailAboutTitle').textContent = `About ${name}`;
+            document.getElementById('detailDescription').textContent = `Spin the reels on ${name} — slots, teen patti and more, all in one app.`;
+            
+            window.scrollTo(0, 0);
+        }
+
+        // Show home page
+        function showHome() {
+            document.getElementById('homePage').style.display = 'block';
+            document.getElementById('detailPage').classList.remove('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Search functionality
+        function searchGames() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (!searchTerm) return;
+            
+            const grid = document.getElementById('appsGrid');
+            grid.innerHTML = '';
+            
+            const filtered = appsData.filter(app => 
+                app.name.toLowerCase().includes(searchTerm) || 
+                app.category.toLowerCase().includes(searchTerm)
+            );
+            
+            filtered.forEach(app => {
+                const card = document.createElement('div');
+                card.className = `app-card ${app.category === 'slots' ? 'slots' : ''}`;
+                card.onclick = () => showAppDetail(app.name, app.category, app.rating, app.bonus, app.icon);
+                
+                card.innerHTML = `
+                    <div class="app-category">${app.category.toUpperCase().replace('-', ' ')}</div>
+                    <div class="app-name">${app.icon}</div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Allow enter key for search
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApps();
+            
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchGames();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

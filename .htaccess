@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Redirect /game/some-slug to game.php?slug=some-slug
+RewriteRule ^game/([^/]+)/?$ game.php?slug=$1 [L,QSA]
+
+# Prevent directory listing
+Options -Indexes
