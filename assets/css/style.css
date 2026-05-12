@@ -27,6 +27,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .logo {
@@ -51,6 +52,36 @@ header {
     font-weight: bold;
 }
 
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
 nav ul {
     display: flex;
     list-style: none;
@@ -71,7 +102,7 @@ nav a:hover {
 .hero {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 6rem 2rem 4rem;
+    padding: 2rem 1rem;
     text-align: center;
 }
 
@@ -92,6 +123,7 @@ nav a:hover {
 /* Search Bar */
 .search-container {
     max-width: 600px;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     gap: 0;
@@ -121,6 +153,7 @@ nav a:hover {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s;
+    white-space: nowrap;
 }
 
 .search-button:hover {
@@ -131,7 +164,7 @@ nav a:hover {
 .apps-section {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2rem 1rem;
 }
 
 .apps-header {
@@ -139,6 +172,8 @@ nav a:hover {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .apps-title h2 {
@@ -155,6 +190,7 @@ nav a:hover {
 .filter-tabs {
     display: flex;
     gap: 0.75rem;
+    flex-wrap: wrap;
 }
 
 .filter-tab {
@@ -174,103 +210,158 @@ nav a:hover {
     border-color: #fff;
 }
 
-/* New Game Card Design (Screenshot 6.40.22) */
+/* New Game Card Design */
 .apps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 2rem;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.875rem;
     margin-bottom: 3rem;
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .app-card-new {
     background-color: #111;
-    border: 1px solid #222;
-    border-radius: 16px;
-    overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 0.625rem 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .app-card-new:hover {
-    transform: translateY(-5px);
-    border-color: #444;
+    transform: translateY(-3px);
+    border-color: #555;
+    background-color: #1a1a1a;
 }
 
-.app-card-top {
-    height: 180px;
+.app-card-left {
+    flex-shrink: 0;
+    width: 55px;
+    height: 55px;
+    border-radius: 10px;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     background: linear-gradient(135deg, #222, #111);
 }
 
+.app-card-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .app-icon-text {
-    font-size: 3rem;
+    font-size: 1rem;
     font-weight: 800;
     color: #fff;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
 /* Category Gradients */
-.app-card-top.rummy { background: linear-gradient(135deg, #1a5f3f, #0d3d28); }
-.app-card-top.slots { background: linear-gradient(135deg, #8b4513, #654321); }
-.app-card-top.teen-patti { background: linear-gradient(135deg, #6b46c1, #553c9a); }
-.app-card-top.ludo { background: linear-gradient(135deg, #1e40af, #1e3a8a); }
+.app-card-left.rummy { background: linear-gradient(135deg, #1a5f3f, #0d3d28); }
+.app-card-left.slots { background: linear-gradient(135deg, #8b4513, #654321); }
+.app-card-left.teen-patti { background: linear-gradient(135deg, #6b46c1, #553c9a); }
+.app-card-left.ludo { background: linear-gradient(135deg, #1e40af, #1e3a8a); }
 
-.app-card-bottom {
-    padding: 1.5rem;
-}
-
-.app-title-row {
-    margin-bottom: 0.75rem;
+.app-card-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    min-width: 0;
 }
 
 .app-name-text {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.app-meta-row {
+.app-info-row {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.125rem;
+    font-size: 0.75rem;
+    color: #aaa;
 }
 
-.app-rating {
+.info-item {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    color: #aaa;
-    font-size: 0.9rem;
 }
 
-.star {
-    color: #ffd700;
+.info-icon {
+    font-size: 0.8rem;
 }
 
-.app-bonus {
-    color: #4ade80; /* Success green for bonus */
-    font-weight: 700;
-    font-size: 1rem;
+.bonus-text {
+    color: #ff6b6b;
+    font-weight: 600;
+}
+
+.withdraw-text {
+    color: #888;
+    font-weight: 500;
+}
+
+.app-card-right {
+    flex-shrink: 0;
 }
 
 .download-button {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 1rem;
     background-color: #fff;
     color: #000;
-    text-align: center;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 700;
-    transition: background-color 0.3s;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.download-button::before {
+    content: "📥";
+    font-size: 0.8rem;
 }
 
 .download-button:hover {
     background-color: #e0e0e0;
+    transform: scale(1.05);
+}
+
+/* Rank Badge */
+.rank-badge {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 18px;
+    height: 18px;
+    background-color: #ff6b6b;
+    color: #fff;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: bold;
+    z-index: 10;
 }
 
 /* Detail Page Specific Styles */
@@ -350,10 +441,111 @@ nav a:hover {
 
 /* Footer */
 footer {
+    background-color: #0a0a0a;
     border-top: 1px solid #222;
-    padding: 4rem 2rem;
+    padding: 4rem 2rem 2rem;
+    color: #aaa;
+}
+
+footer .container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.footer-col h4 {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+}
+
+.footer-about p {
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #111;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 1.1rem;
+}
+
+.social-icon:hover {
+    background-color: #fff;
+    color: #000;
+    border-color: #fff;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-links li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-links a {
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+.footer-links i {
+    color: #ff6b6b;
+    width: 20px;
+}
+
+.footer-bottom {
+    border-top: 1px solid #222;
+    padding-top: 1.5rem;
     text-align: center;
     color: #666;
+}
+
+.footer-bottom p {
+    font-size: 0.9rem;
+}
+
+/* Related Games Section */
+.related-games {
+    margin-top: 3rem;
+}
+
+.related-games h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #fff;
 }
 
 /* Admin & UI Components */
@@ -432,9 +624,117 @@ tr:last-child td {
 }
 
 /* Responsive */
+@media (max-width: 992px) {
+    .hero h1 { font-size: 3rem; }
+}
+
 @media (max-width: 768px) {
+    header {
+        padding: 1rem 1.25rem;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #000;
+        border-bottom: 1px solid #222;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    nav.active {
+        max-height: 300px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+    }
+
+    nav ul li {
+        padding: 0.75rem 0;
+    }
+
+    .hero {
+        padding: 1.5rem 1rem;
+    }
+
     .hero h1 { font-size: 2.5rem; }
-    .apps-grid { grid-template-columns: 1fr; }
-    .filter-tabs { flex-wrap: wrap; }
-    .detail-card { flex-direction: column; text-align: center; padding: 2rem; }
+
+    .apps-grid { width: 95%; padding: 0; }
+
+    .app-card-new { 
+        gap: 0.625rem; 
+        padding: 0.5rem 0.625rem;
+        flex-wrap: nowrap;
+    }
+
+    .app-card-left { width: 50px; height: 50px; }
+
+    .app-icon-text { font-size: 0.9rem; }
+
+    .app-name-text { font-size: 0.9rem; }
+
+    .app-info-row { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 0.125rem;
+    }
+
+    .download-button { 
+        padding: 0.4rem 0.875rem; 
+        font-size: 0.75rem;
+    }
+
+    .apps-header { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 1rem;
+    }
+
+    .detail-card { 
+        flex-direction: column; 
+        text-align: center; 
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .app-card-new {
+        padding: 0.5rem 0.625rem;
+        gap: 0.5rem;
+    }
+
+    .app-card-left { width: 45px; height: 45px; }
+
+    .app-name-text { font-size: 0.85rem; }
+
+    .app-info-row { font-size: 0.7rem; }
+
+    .search-container {
+        padding: 0 0.5rem;
+    }
+
+    .search-input {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .search-button {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
 }

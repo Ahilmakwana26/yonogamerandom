@@ -1,5 +1,13 @@
 RewriteEngine On
 
+# SEO-Friendly URLs
+RewriteRule ^home/?$ index.php [L,QSA]
+RewriteRule ^about/?$ about.php [L,QSA]
+RewriteRule ^disclaimer/?$ disclaimer.php [L,QSA]
+RewriteRule ^privacy/?$ privacy.php [L,QSA]
+RewriteRule ^terms/?$ terms.php [L,QSA]
+RewriteRule ^contact/?$ contact.php [L,QSA]
+
 # Redirect /game/some-slug to game.php?slug=some-slug
 RewriteRule ^game/([^/]+)/?$ game.php?slug=$1 [L,QSA]
 

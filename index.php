@@ -1,5 +1,7 @@
 <?php
-require_once 'includes/db.php';
+$GLOBALS['page_title'] = 'GameVault - Best Rummy & Slots Apps of 2026';
+$GLOBALS['meta_description'] = 'Discover the best real-money gaming apps like Rummy, Slots, Teen Patti, and Ludo with verified bonuses and instant withdrawals at GameVault. Curated, ranked, and updated regularly.';
+require_once 'includes/header.php';
 
 // Fetch all games with category names
 $stmt = $pdo->query("SELECT g.*, c.name as category_name 
@@ -32,31 +34,6 @@ if (count($games) == 0) {
 
 $gamesJson = json_encode($games);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameVault - Best Rummy & Slots Apps of 2026</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-    <header>
-        <div class="header-content">
-            <a href="index.php" class="logo">
-                <div class="logo-icon">G</div>
-                <span>GameVault</span>
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="admin/index.php">Admin</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
     <main id="homePage">
         <section class="hero">
             <h1>Best rummy & slots<br>apps of 2026.</h1>
@@ -88,10 +65,6 @@ $gamesJson = json_encode($games);
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 GameVault. All rights reserved.</p>
-    </footer>
-
     <script>
         const appsData = <?php echo $gamesJson; ?>;
 
@@ -99,33 +72,37 @@ $gamesJson = json_encode($games);
             const grid = document.getElementById('appsGrid');
             grid.innerHTML = '';
             
-            data.forEach(app => {
+            data.forEach((app, index) => {
                 const card = document.createElement('div');
-                card.className = 'app-card-new'; // Using a new class for the specific layout
+                card.className = 'app-card-new';
                 
                 const catClass = (app.category_name || '').toLowerCase().replace(' ', '-');
                 const iconText = app.title.split(' ').map(w => w[0]).join('').substring(0, 3).toUpperCase();
                 
                 const iconHtml = app.image 
-                    ? `<img src="${app.image}" alt="${app.title}" style="width: 100%; height: 100%; object-fit: cover;">`
+                    ? `<img src="${app.image}" alt="${app.title}">`
                     : `<div class="app-icon-text">${iconText}</div>`;
                 
                 card.innerHTML = `
-                    <div class="app-card-top ${catClass}" onclick="location.href='game/${app.slug}'">
+                    <div class="rank-badge">${index + 1}</div>
+                    <div class="app-card-left ${catClass}" onclick="location.href='<?php echo site_url('game/'); ?>${app.slug}'">
                         ${iconHtml}
                     </div>
-                    <div class="app-card-bottom">
-                        <div class="app-title-row">
-                            <span class="app-name-text">${app.title}</span>
-                        </div>
-                        <div class="app-meta-row">
-                            <div class="app-rating">
-                                <span class="star">★</span>
-                                <span>${app.rating}</span>
+                    <div class="app-card-info" onclick="location.href='<?php echo site_url('game/'); ?>${app.slug}'">
+                        <div class="app-name-text">${app.title}</div>
+                        <div class="app-info-row">
+                            <div class="info-item">
+                                <span class="info-icon">🎁</span>
+                                <span class="bonus-text">Sign Up Bonus ${app.bonus || '₹0'}</span>
                             </div>
-                            <div class="app-bonus">${app.bonus || 'N/A'}</div>
+                            <div class="info-item">
+                                <span class="info-icon">💳</span>
+                                <span class="withdraw-text">Min. Withdraw ₹${app.withdraw || '100'}</span>
+                            </div>
                         </div>
-                        <a href="game/${app.slug}" class="download-button">Download</a>
+                    </div>
+                    <div class="app-card-right">
+                        <a href="<?php echo site_url('game/'); ?>${app.slug}" class="download-button">Download</a>
                     </div>
                 `;
                 
@@ -160,5 +137,4 @@ $gamesJson = json_encode($games);
             });
         });
     </script>
-</body>
-</html>
+<?php require_once 'includes/footer.php'; ?>
